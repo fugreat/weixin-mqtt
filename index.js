@@ -20,13 +20,12 @@ client.on('message', function(topic, message){
  */
 function play(urls) {
     console.log(clc.green('开始播放！'));
-    child.spawn.kill();
     var player = child.spawn('mplayer', urls.split(' '));
     player.stdout.pipe(process.stdout);
     process.stdin.setEncoding('utf8');
-    //process.stdin.on('data', function(data) {
-    //    player.stdin.write(data.replace('\n', ''));
-    //})
+    process.stdin.on('data', function(data) {
+        player.stdin.write(data.replace('\n', ''));
+    })
     process.stdin.resume();
 }
 
