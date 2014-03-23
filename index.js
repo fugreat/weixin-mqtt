@@ -22,6 +22,16 @@ client.on('message', function(topic, message){
             play(session_url);
         }
     }
+    else if(message == 'ANS:-'){
+        if(player) {
+            player.stdin.write('9'); // 减小音量
+        }
+    }
+    else if(message == 'ANS:+'){
+        if(player) {
+            player.stdin.write('0');//增大音量 
+        }
+    }
     else if(message == 'ANS:暂停'){
         if(player) {
             player.stdin.write('p');
